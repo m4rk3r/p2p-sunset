@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta property="og:url" content="http://duskjacket.com/sunset/" />
+    <meta property="og:image" content="http://d4t4bin.net/dump/sunset-screengrab.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="peer to peer sunset" />
+
+    <title>p2p sunset</title>
+
+    <link rel="stylesheet" href="/static/js/lib/popbox.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css" charset="utf-8">
+    <script type="text/javascript" charset="utf-8" src='/static/js/libs.js'></script>
+    <script>window.user = Math.random().toString(36).substring(2);</script>
+    <script type="text/javascript" charset="utf-8" src='/static/js/site.js'></script>
+
+    <!-- <script type="text/javascript" src="/static/js/utils.js"></script> -->
+    <!-- <script type="text/javascript" src="/static/js/sky.js"></script> -->
+    <!-- <script type="text/javascript" src="/static/js/sun.js"></script> -->
+    <!-- <script type="text/javascript" src="/static/js/atmosphere.js"></script> -->
+    <!-- <script type="text/javascript" src="/static/js/p2p.js"></script> -->
+    <script type="text/javascript" src='/static/js/site.js'></script>
+</head>
+<body onunload="exit">
+    <div id='debug'></div>
+    <div id='sky'>
+        <div id='message-box' class='messages'>
+            waiting for another user
+        </div>
+        <div id='message-box2' class='messages'>
+            <div class='popbox'>
+                <a class='open' id='lame-link' href='#'>invite someone?</a>
+
+                <div class='collapse'>
+                    <div class='box' style='padding:20px;'>
+                        <div class='arrow'></div>
+                        <div class='arrow-border'></div>
+                        <a href='Javascript:build_invite();'>generate an invite</a><BR><span style='font-size:10px;'>(will no longer attempt to pair you with someone)</span>
+                        <BR>
+                        <input type='text' id='link-value' value='http://lol.com/lol' style='display:none;width:100%;'>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
