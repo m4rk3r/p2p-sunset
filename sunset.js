@@ -105,7 +105,7 @@ io.on('connect', function (sock) {
 
     sock.on('disconnect', function(){
         console.log('removing user', sock.user);
-        io.to(sock.sunset).emit('exit');
+        io.to(sock.sunset).emit('update', {action: 'exit'});
         _.remove(users, (u) => u.user == sock.user);
         console.log(users);
     });
