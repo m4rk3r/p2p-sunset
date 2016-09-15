@@ -16,7 +16,7 @@ function querystring() {
 
             if(this.DEBUG) console.log('connecting');
 
-            this.socket = io.connect('http://localhost:8075');
+            this.socket = io.connect('/');
 
             this.socket.on('connect', _.bind(function () {
                 console.log('connected');

@@ -85,6 +85,7 @@ io.on('connect', function (sock) {
         sock.sunset = uid;
         sock.user = data.user;
         sock.peer = peer;
+        peer.sunset = uid;
 
         console.log('connecting', sock.user, peer.user)
         io.to(peer.id).emit('update', {
