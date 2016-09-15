@@ -85,6 +85,9 @@ io.on('connect', function (sock) {
         sock.sunset = uid;
         sock.user = data.user;
         sock.peer = peer;
+
+        // join peer to sunset room
+        peer.join(uid);
         peer.sunset = uid;
 
         console.log('connecting', sock.user, peer.user)
