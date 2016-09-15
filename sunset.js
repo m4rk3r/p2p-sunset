@@ -13,7 +13,7 @@ var users = [];
 var holding = [];
 var sunsets = {};
 var invites = {};
-var baseUrl = '/';
+var baseUrl = '/sunset/';
 
 app.get(baseUrl, function (req,res) {
     res.sendFile(__dirname+'/index.html');
