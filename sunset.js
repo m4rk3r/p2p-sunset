@@ -13,12 +13,18 @@ var sunsets = {};
 var invites = {};
 var baseUrl = '/sunset/';
 
+function validId(id) {
+    return Boolean(id.match(/[a-z0-9]+$/));
+}
+
 app.get(baseUrl, function (req,res) {
     res.sendFile(__dirname+'/index.html');
 });
 
 // generate invite code, remove from avail users, hold tight
 app.get(`${baseUrl}invite`, function (req, res) {
+    if(!validId(req.query.user)) return res.send('uh uh uh!');
+
     var invite = _.uniqueId('invite');
     invites[invite] = req.query.user;
     var idx = _.findIndex(users, (u) => u.user == req.query.user);
@@ -35,6 +41,8 @@ io.on('connect', function (sock) {
     });
 
     sock.on('enter', function (data) {
+	if(!validId(data.user)) return;
+
         if(users.length > 0){
             var peer = users.shift();
 
@@ -73,7 +81,7 @@ io.on('connect', function (sock) {
     });
 
     sock.on('subscribe', function (data){
-        console.log('subscribe', data);
+	if(!validId(data.sunset) || !validId(data.user)) return;
 
         var peer = _.find(holding, (u) => u.user == invites[data.sunset]);
         var uid = _.uniqueId('sunset');

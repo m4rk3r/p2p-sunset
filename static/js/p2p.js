@@ -23,7 +23,7 @@ function querystring() {
                 qs = querystring();
 
                 if(qs.sunset)
-                    this.socket.emit('subscribe',{sunset:qs.sunset});
+                    this.socket.emit('subscribe',{sunset:qs.sunset, user:window.user});
                 else
                     this.socket.emit('enter',{user:window.user});
 
