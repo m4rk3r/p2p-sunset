@@ -1,8 +1,6 @@
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-var path = require("path");
-
 var _ = require('lodash');
 
 server.listen(8075, function (){
@@ -32,14 +30,12 @@ app.get(`${baseUrl}invite`, function (req, res) {
 io.on('connect', function (sock) {
 
     sock.on('tick', function (data){
-        console.log('tick', data)
         var peer = sock.peer;
         io.to(peer.id).emit('tick', {step: data.step, epoch: data.epoch});
     });
 
     sock.on('enter', function (data) {
         if(users.length > 0){
-            console.log('two sockets!')
             var peer = users.shift();
 
             var uid = _.uniqueId('sunset');
@@ -112,6 +108,5 @@ io.on('connect', function (sock) {
         console.log('removing user', sock.user);
         io.to(sock.sunset).emit('update', {action: 'exit'});
         _.remove(users, (u) => u.user == sock.user);
-        console.log(users);
     });
 });
