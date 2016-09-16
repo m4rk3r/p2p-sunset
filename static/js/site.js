@@ -19,7 +19,7 @@ $(function (){
 
 function build_invite(){
     $.get('/sunset/invite/',{'user':window.user}, function ( data ){
-        var link = 'http://duskjacket.com/peer-to-peer-sunset/?sunset='+data;
+        var link = 'http://duskjacket.com/sunset/?sunset='+data;
         $("#link-value").val(link);
 
         $("#link-value").fadeIn();
