@@ -1,6 +1,6 @@
 @font-face{
  font-family:"Helvetica W01 Light Obl";
- src: url("http://mark-beasley.com/assets/fonts/Helvetica-LightOblique.ttf") format('truetype');
+ src: url("/static/css/Helvetica-LightOblique.ttf") format('truetype');
 }
 
 body,html{

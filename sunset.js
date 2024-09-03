@@ -1,21 +1,26 @@
-var app = require('express')();
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
-var _ = require('lodash');
+import express from 'express';
+import http from 'http';
+import { Server } from 'socket.io';
+import _ from 'lodash';
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-server.listen(8075, function (){
-    console.log('listening on port 8075');
-});
+const app = express();
+const server = http.Server(app);
+const io = new Server(server);
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 var users = [];
 var holding = [];
 var sunsets = {};
 var invites = {};
-var baseUrl = '/sunset/';
+const baseUrl = '/';
 
 function validId(id) {
     return Boolean(id.match(/[a-z0-9]+$/));
 }
+
+app.use('/static', express.static('static'));
 
 app.get(baseUrl, function (req,res) {
     res.sendFile(__dirname+'/index.html');
@@ -117,4 +122,8 @@ io.on('connect', function (sock) {
         io.to(sock.sunset).emit('update', {action: 'exit'});
         _.remove(users, (u) => u.user == sock.user);
     });
+});
+
+server.listen(8075, function (){
+    console.log('listening on port 8075');
 });
