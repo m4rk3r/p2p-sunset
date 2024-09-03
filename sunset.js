@@ -20,7 +20,7 @@ function validId(id) {
   return Boolean(id.match(/[a-z0-9]+$/));
 }
 
-app.use('/static', express.static('static'));
+// app.use('/static', express.static('static'));
 
 app.get(baseUrl, function (req, res) {
   res.sendFile(__dirname + '/index.html');
