@@ -14,7 +14,7 @@ var users = [];
 var holding = [];
 var sunsets = {};
 var invites = {};
-const baseUrl = '/';
+const baseUrl = '/sunset/';
 
 function validId(id) {
   return Boolean(id.match(/[a-z0-9]+$/));
