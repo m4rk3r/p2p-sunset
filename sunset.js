@@ -124,6 +124,42 @@ io.on('connect', function (sock) {
   });
 });
 
-server.listen(8075, function () {
-  console.log('listening on port 8075');
-});
+// Use Unix socket in production, TCP port in development
+const PORT = process.env.PORT || 8075;
+const socketPath = process.env.SOCKET_PATH;
+
+if (socketPath) {
+  // Production: Use Unix socket
+  server.listen(socketPath, () => {
+    console.log(`Server listening on Unix socket: ${socketPath}`);
+    // Set permissions so nginx/reverse proxy can access it
+    import('fs').then(fs => {
+      fs.default.chmodSync(socketPath, '0666');
+    });
+  });
+} else {
+  // Development: Use TCP port
+  server.listen(PORT, () => {
+    console.log(`Server listening on port: ${PORT}`);
+  });
+}
+
+// Graceful shutdown
+const shutdown = async () => {
+  console.log('Shutting down server...');
+
+  // Close server to stop accepting new connections
+  server.close(() => {
+    console.log('HTTP server closed');
+  });
+
+  // Close Socket.IO
+  io.close(() => {
+    console.log('Socket.IO closed');
+  });
+
+  process.exit(0);
+};
+
+process.on('SIGTERM', shutdown);
+process.on('SIGINT', shutdown);

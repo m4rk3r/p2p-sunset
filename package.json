@@ -5,15 +5,18 @@
   "main": "sunset.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon sunset.js",
+    "start": "node sunset.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2",
-    "http": "0.0.0",
-    "lodash": "^4.15.0",
-    "nodemon": "^3.1.4",
-    "socket.io": "^4.7.5"
+    "express": "^4.21.2",
+    "lodash": "^4.17.21",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
   }
 }
